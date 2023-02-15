@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios实例对象发送请求</title>
+    <link crossorigin="anonymous" rel="stylesheet"
+        href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">axios实例对象发送请求</h2>
+        <button class="btn btn-primary">发送 GET 请求</button>
+        <button class="btn btn-warning">发送 POST 请求</button>
+    </div>
+    <script>
+        // 获取按钮
+        const btns = document.querySelectorAll('button')
+
+        btns[0].onclick = function () {
+            // 创建实例对象  https://api.apiopen.top/getJoke
+            const duanzi = axios.create({
+                baseURL: 'https://api.apiopen.top',
+                timeout: 2000
+            })
+            // 这里 duanzi 与 axios 对象的功能几乎是一样的
+            // duanzi({
+            //     url: '/getJoke',
+            // }).then(respone => {
+            //     console.log(respone);
+            // })
+
+            duanzi.get('/getJoke').then(respone => {
+                console.log(respone.data);
+            })
+        }
+    </script>
+</body>
+</html>
